@@ -1,0 +1,24 @@
+package Fila_Simples;
+
+class RandomGenerator {
+    private int seed;
+    private final int a;
+    private final int c;
+    private final int m;
+
+    public RandomGenerator(int seed, int a, int c, int m) {
+        this.seed = seed;
+        this.a = a;
+        this.c = c;
+        this.m = m;
+    }
+
+    public double nextRandom() {
+        this.seed = (a * seed + c) % m;
+        return ((double) seed / m);
+    }
+
+    public double transforma(int a, int b) {
+        return a + (b - a) * ((double) seed / m);
+    }
+}
