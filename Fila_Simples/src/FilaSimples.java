@@ -1,4 +1,4 @@
-package Test;
+package Fila_Simples.src;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -16,8 +16,10 @@ public class FilaSimples {
     private int loss;
     private int atendidos;
 
+    private RandomGenerator ramdom;
+
     public FilaSimples(int servers, int capacity, double minArrival, double maxArrival,
-            double minService, double maxService) {
+            double minService, double maxService, RandomGenerator ramdom) {
         this.fila = new LinkedList<>();
         this.servers = servers;
         this.capacity = capacity;
@@ -28,10 +30,12 @@ public class FilaSimples {
         this.custumers = 0;
         this.loss = 0;
         this.atendidos = 0;
+        this.ramdom = ramdom;
     }
 
     private double randomUniform(double min, double max) {
-        return ThreadLocalRandom.current().nextDouble(min, max);
+
+        return ramdom.nextRandom();
     }
 
     public void simular(double tempoMax) {
@@ -74,7 +78,7 @@ public class FilaSimples {
             }
         }
 
-        System.out.println("Tempo simulação: " + tempoMax);
+        System.out.println("Tempo Simulacao: " + tempoMax);
         System.out.println("Clientes atendidos: " + atendidos);
         System.out.println("Clientes perdidos: " + loss);
     }

@@ -1,4 +1,4 @@
-package Fila_Simples;
+package Fila_Simples.src;
 
 class RandomGenerator {
     private int seed;
