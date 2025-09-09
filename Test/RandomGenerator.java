@@ -1,7 +1,7 @@
-package Fila_Tandem.src;
+package Test;
 
 class RandomGenerator {
-    private double seed;
+    private int seed;
     private final int a;
     private final int c;
     private final int m;
@@ -18,9 +18,8 @@ class RandomGenerator {
         return ((double) seed / m);
     }
 
-    public double transforma(double a, double b) {
-        double aux = nextRandom();
+    public double generateUniform(double min, double max) {
         this.seed = (a * seed + c) % m;
-        return a + (b - a) * ((double) seed / m);
+        return min + (max - min) * ((double) seed / m);
     }
 }

@@ -3,26 +3,37 @@ package Fila_Tandem.src;
 import java.util.LinkedList;
 import java.util.List;
 
-public class FilaTandem {
+import java.util.*;
 
-    private List<FilaSimples> filas;
-    private int quantFilas;
-    private int quantServicos;
+import java.util.*;
+
+public class FilaTandem {
+    private List<FilaSimples> estagios;
 
     public FilaTandem() {
-        this.quantFilas = 0;
-        ;
-        this.quantServicos = 0;
-        this.filas = new LinkedList<FilaSimples>();
+        this.estagios = new ArrayList<>();
     }
 
-    public void addFila(FilaSimples fila, int posicao) {
-        filas.add(posicao, fila);
-        quantFilas++;
+    public void adicionarFila(FilaSimples fila) {
+        estagios.add(fila);
     }
 
-    public FilaSimples getFila(int index) {
-        return filas.get(index);
-    }
+    public void simular(double tempoMax) {
+        int entradas = 0;
+        for (int i = 0; i < estagios.size(); i++) {
+            FilaSimples fila = estagios.get(i);
+            System.out.println("\n--- Simulando Fila " + (i + 1) + " ---");
 
+            fila.simular(tempoMax, entradas); // cada fila recebe clientes
+
+            entradas = fila.getAtendidos(); // atendidos viram chegadas da próxima
+        }
+
+        System.out.println("\n--- Resultados finais do tandem ---");
+        for (int i = 0; i < estagios.size(); i++) {
+            FilaSimples fila = estagios.get(i);
+            System.out.println("Fila " + (i + 1) + " -> Atendidos: " +
+                    fila.getAtendidos() + ", Perdidos: " + fila.getPerdidos());
+        }
+    }
 }

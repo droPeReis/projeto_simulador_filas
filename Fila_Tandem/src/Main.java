@@ -2,36 +2,21 @@ package Fila_Tandem.src;
 
 public class Main {
 
-    public static void main(String[] args) {
-        simulador(1000);
-    }
+        public static void main(String[] args) {
+            // Fila 1: G/G/1/5 com chegadas entre 2..5, atendimento 3..5
+            FilaSimples fila1 = new FilaSimples(1, 5, 2, 5, 3, 5, 0, 0, 0, 0);
 
-    public static RandomGenerator random = new RandomGenerator(12345, 1103515245, 12345, 214748364);
+            // Fila 2: G/G/1/3 com atendimento 4..6
+            FilaSimples fila2 = new FilaSimples(1, 3, 2, 5, 4, 6, 0, 0, 0, 0);
 
-    public static void simulador(double tempoMax) {
+            // Cria o tandem
+            FilaTandem tandem = new FilaTandem();
+            tandem.adicionarFila(fila1);
+            tandem.adicionarFila(fila2);
 
-        FilaSimples fila_1 = new FilaSimples(0, 5, 0, 0, 0, 0, 0, 0, 0);
-        FilaSimples fila_2 = new FilaSimples(0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-        FilaTandem filas = new FilaTandem();
-        filas.addFila(fila_1, 0);
-        filas.addFila(fila_2, 1);
-
-        double tempoPassado = 0;
-        double tempoSimulado = 1000;
-
-        double proximaChegada = tempoPassado + randomUniform(1.0, 4.0);
-        double proximaSaida = Double.POSITIVE_INFINITY;
-
-        while (tempoSimulado > tempoMax) {
-            tempoSimulado--;
+            // Roda a simulação
+            tandem.simular(100);
         }
-
-    }
-
-    private static double randomUniform(double min, double max) {
-
-        return random.nextRandom();
     }
 
 }
