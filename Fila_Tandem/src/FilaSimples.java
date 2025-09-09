@@ -102,10 +102,13 @@ public class FilaSimples {
             totalTempo += t;
         }
         if (totalTempo > 0) {
+            System.out.printf("Tempo acumulado: %.2f\n", totalTempo);
             System.out.println("Probabilidades de estados:");
             for (int i = 0; i <= capacity; i++) {
                 double prob = times[i] / totalTempo;
                 System.out.printf("P(%d) = %.4f\n", i, prob);
+                System.out.printf("tempo toa lglobablizado: %.2f\n", totalTempo);
+                // ver melhor essa parte do tempo total
             }
         } else {
             System.out.println("");
