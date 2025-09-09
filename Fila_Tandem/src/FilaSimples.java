@@ -107,8 +107,10 @@ public class FilaSimples {
             for (int i = 0; i <= capacity; i++) {
                 double prob = times[i] / totalTempo;
                 System.out.printf("P(%d) = %.4f\n", i, prob);
-                System.out.printf("tempo toa lglobablizado: %.2f\n", totalTempo);
+                System.out.printf("tempo total globalizado: %.2f\n", totalTempo);
                 // ver melhor essa parte do tempo total
+                // ver next fixes
+
             }
         } else {
             System.out.println("");
