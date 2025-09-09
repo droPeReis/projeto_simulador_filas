@@ -1,4 +1,4 @@
-package Fila_Tandem.src;
+package Fila_Tandem;
 
 public class Cliente {
     private double arrivalTime;
@@ -14,6 +14,14 @@ public class Cliente {
     public void setStartService(double startService) {
         this.startService = startService;
         this.endService = startService + serviceTime;
+    }
+
+    public void setServiceTime(double serviceTime) {
+        this.serviceTime = serviceTime;
+    }
+
+    public void setArrivalTime(double arrivalTime) {
+        this.arrivalTime = arrivalTime;
     }
 
     public double getArrivalTime() {

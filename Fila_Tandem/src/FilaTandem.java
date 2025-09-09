@@ -1,39 +1,71 @@
-package Fila_Tandem.src;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import java.util.*;
-
-import java.util.*;
+package Fila_Tandem;
 
 public class FilaTandem {
-    private List<FilaSimples> estagios;
+    private FilaSimples fila1;
+    private FilaSimples fila2;
 
-    public FilaTandem() {
-        this.estagios = new ArrayList<>();
-    }
-
-    public void adicionarFila(FilaSimples fila) {
-        estagios.add(fila);
+    public FilaTandem(FilaSimples fila1, FilaSimples fila2) {
+        this.fila1 = fila1;
+        this.fila2 = fila2;
     }
 
     public void simular(double tempoMax) {
-        int entradas = 0;
-        for (int i = 0; i < estagios.size(); i++) {
-            FilaSimples fila = estagios.get(i);
-            System.out.println("\n--- Simulando Fila " + (i + 1) + " ---");
+        double tempo = 0.0;
+        double ultimoTempo = 0.0;
+        double proximaChegada = fila1.gerarChegada(tempo);
+        double proximaSaida1 = Double.POSITIVE_INFINITY;
+        double proximaSaida2 = Double.POSITIVE_INFINITY;
 
-            fila.simular(tempoMax, entradas); // cada fila recebe clientes
+        while (tempo < tempoMax) {
+            double proximoEvento = Math.min(proximaChegada, Math.min(proximaSaida1, proximaSaida2));
 
-            entradas = fila.getAtendidos(); // atendidos viram chegadas da próxima
+            // Acumular tempos para ambas as filas
+            double delta = proximoEvento - ultimoTempo;
+            fila1.acumulaTempo(delta);
+            fila2.acumulaTempo(delta);
+
+            tempo = proximoEvento;
+            ultimoTempo = tempo;
+
+            if (tempo >= tempoMax) {
+                break;
+            }
+
+            if (proximoEvento == proximaChegada) {
+                // Chegada na fila1
+                fila1.chegada(tempo);
+                proximaChegada = fila1.gerarChegada(tempo);
+                if (proximaSaida1 == Double.POSITIVE_INFINITY) {
+                    proximaSaida1 = fila1.gerarSaida(tempo);
+                }
+
+            } else if (proximoEvento == proximaSaida1) {
+                // Saida da fila1 -> vai para fila2
+                Cliente cliente = fila1.saida(tempo);
+                if (cliente != null) {
+                    fila2.chegadaDireta(cliente, tempo);
+                    if (proximaSaida2 == Double.POSITIVE_INFINITY) {
+                        proximaSaida2 = fila2.gerarSaida(tempo);
+                    }
+                }
+                proximaSaida1 = fila1.temCliente() ? fila1.gerarSaida(tempo) : Double.POSITIVE_INFINITY;
+
+            } else if (proximoEvento == proximaSaida2) {
+                // Saida da fila2 (cliente deixa o sistema)
+                fila2.saida(tempo);
+                proximaSaida2 = fila2.temCliente() ? fila2.gerarSaida(tempo) : Double.POSITIVE_INFINITY;
+            }
         }
 
-        System.out.println("\n--- Resultados finais do tandem ---");
-        for (int i = 0; i < estagios.size(); i++) {
-            FilaSimples fila = estagios.get(i);
-            System.out.println("Fila " + (i + 1) + " -> Atendidos: " +
-                    fila.getAtendidos() + ", Perdidos: " + fila.getPerdidos());
+        // Acumular o tempo restante ate tempoMax, se necessario
+        double deltaFinal = tempoMax - ultimoTempo;
+        if (deltaFinal > 0) {
+            fila1.acumulaTempo(deltaFinal);
+            fila2.acumulaTempo(deltaFinal);
         }
+
+        System.out.println("=== Resultados Tandem ===");
+        fila1.relatorio("Fila 1");
+        fila2.relatorio("Fila 2");
     }
 }
