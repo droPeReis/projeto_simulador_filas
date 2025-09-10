@@ -5,16 +5,19 @@ Projeto de simulação de filas da cadeira de Simulação e Métodos Analíticos
 Projeto implementa um simulador de uma fila simples e de filas de tandem em java.
 
 # Compilação e Execução
-
+```
 cd caminho/para/projeto
+```
 
 ## Compile os arquvios (se eles não estiverem já compilados):
-
+```
 javac Fila_Tandem/src/\*.java
+```
 
 ## Execute o programa:
-
+```
 java Fila_Tandem.src.Main
+```
 
 # Saída
 
