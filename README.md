@@ -1,4 +1,4 @@
-# projeto_simulador_filas
+# Projeto Simulador de Filas
 
 Projeto de simulação de filas da cadeira de Simulação e Métodos Analíticos - PUCRS
 
