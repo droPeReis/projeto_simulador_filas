@@ -22,7 +22,7 @@ java Fila_Tandem.src.Main
 # Saída
 
 A saída deverá exibir:
-_ Clientes perdidos por fila.
-_ Tempo total acumulado e tempos por estado.
-_ Probabilidade de estados para cada fila.
-_ Tempo global de simulação
+1. Clientes perdidos por fila.
+2. Tempo total acumulado e tempos por estado.
+3. Probabilidade de estados para cada fila.
+4. Tempo global de simulação
