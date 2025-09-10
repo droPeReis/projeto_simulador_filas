@@ -1,5 +1,6 @@
 package Fila_Tandem.src;
 
+// Representa m cliente com tempos de chegada e servico
 public class Cliente {
     private double arrivalTime;
     private double serviceTime;

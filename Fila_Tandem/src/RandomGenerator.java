@@ -1,5 +1,6 @@
 package Fila_Tandem.src;
 
+// Gera numeros aleatorios para tempos de chegada e servico
 class RandomGenerator {
     private int seed;
     private final int a;
