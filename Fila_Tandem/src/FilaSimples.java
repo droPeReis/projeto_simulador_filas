@@ -107,7 +107,7 @@ public class FilaSimples {
             for (int i = 0; i <= capacity; i++) {
                 double prob = times[i] / totalTempo;
                 System.out.printf("P(%d) = %.4f\n", i, prob);
-                // ver melhor essa parte do tempo total
+                // imprimir o tempo total acumulado de cada fila
 
             }
         } else {
