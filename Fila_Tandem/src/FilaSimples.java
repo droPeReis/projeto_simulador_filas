@@ -95,7 +95,7 @@ public class FilaSimples {
 
     //
     public void relatorio(String nome) {
-        System.out.println(nome + ":");
+        System.out.println("\n" + nome + ":");
         System.out.println("Clientes perdidos: " + loss);
         double totalTempo = 0.0;
         for (double t : times) {
@@ -107,9 +107,7 @@ public class FilaSimples {
             for (int i = 0; i <= capacity; i++) {
                 double prob = times[i] / totalTempo;
                 System.out.printf("P(%d) = %.4f\n", i, prob);
-                System.out.printf("tempo total globalizado: %.2f\n", totalTempo);
                 // ver melhor essa parte do tempo total
-                // ver next fixes
 
             }
         } else {
@@ -119,6 +117,7 @@ public class FilaSimples {
 
     /*
      * <PARA FAZR>
+     * - exibir no relatorio o tempo total dos eventos acumulados
      * - Adicionar no relatorio a quantidade de clientes atendidos
      * - criar "wins" para contabilizar a quantidade de clientes atendidos
      * - Ver outras coisas para adicionar no relatorio

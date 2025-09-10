@@ -64,7 +64,7 @@ public class FilaTandem {
         System.out.println("=== Resultados Tandem ===");
         fila1.relatorio("Fila 1");
         fila2.relatorio("Fila 2");
-        System.out.printf("Tempo global de simulacao: %.2f", tempo);
+        System.out.printf("Tempo global de simulacao: %.2f", tempoMax);
         // ver exatamento e que seria o tempo global de simulacao
     }
 }
