@@ -26,3 +26,4 @@ A saída deverá exibir:
 * Tempo total acumulado e tempos por estado.
 * Probabilidade de estados para cada fila.
 * Tempo global de simulação
+
