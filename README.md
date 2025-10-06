@@ -27,4 +27,3 @@ A saída deverá exibir:
 * Probabilidade de estados para cada fila.
 * Tempo global de simulação
 
-
